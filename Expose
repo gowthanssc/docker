@@ -1,0 +1,45 @@
+EXPOSE:
+
+root @ # --> Mkdir Builds
+	--> cd Builds
+	--> mkdir ApacheInstallation
+	--> cd ApacheInstallation
+	-->Vim Dockerfile
+
+
+
+	# This image is based on Centos 7 and will start apache service in each container
+
+		FROM centos:latest
+		MAINTAINER naveendasari571@gmail.com
+
+		RUN yum update -y
+		RUN yum install -y httpd net-tools
+
+		RUN echo "This is a custom index file build during the image creation" > /var/www/html/index.html
+
+		EXPOSE 80
+
+		ENTRYPOINT apachectl "-DFOREGROUND"
+
+--> docker build -t centos7:apache7:v1
+
+What if we keep comment for the Expose 80. 
+
+--> docker run -d --name apacheweb1 -p 8080:80 centos7/apache7:v1
+
+It only runs in that particular port 8080. 
+
+In order to Expose to run in the available port we will uncomment that and then run by using the below command.
+
+--> docker run -d --name apacheweb2 -P centos7/apache7:v1
+
+--> docker ps (it runs in the port 32728) 
+
+So that we can check No meed to mention the particular port.
+
+Note: Important command to grep IPADDress
+
+--> docker inspect apacheweb1 | grep IPAdd (Displays the IP Address)
+
+

@@ -1,0 +1,36 @@
+RUN & CMD differences:
+
+RUN: Actually does the build process, and dockerfile to restart the process. It creates a layer that creates a base image that the docker file is intended to build.
+
+CMD: Similar to RUN, However Execuate to use a specific command but it is not extended during the build.
+	What is does it sets up a command to be RUN when the container is INSTATIANG of the image that we just build. it is a default command that is executed in the creation of those containers, that are based on the image.
+
+
+CMD: Default, RUN : Is a base image.
+
+For example: 
+
+root @ # --> mkdir Echoserver
+	--> cd EchoServer
+	--> cp ../RunAsUser/Dockerfile .
+	--> vim Dockerfile
+
+
+# Dockerfile based on the latest centos7 image - non -privileged user entry
+FROM centos:latest
+MAINTAINER naveendasari571@gmail.com
+
+RUN useradd -ms /bin/bash user
+
+CMD "echo" "This is a custom container message for our Naveen Dasari Class"
+
+USER user
+
+
+--> docker build -t centos7/echo:v1
+--> docker run centos7/echo:v1 (Here we are running the CMD but not all the base image and the container in the output we can see "This is a custom container message for our Naveen Dasari Class")
+
+--> For making sure we can also check by "docker ps" the container won't Run. But can see in the "docker ps-a". if we want we can simply start by taking the image.
+
+Note: There is No need to give  -it while running in the CMD & ENTRYPOINT.
+

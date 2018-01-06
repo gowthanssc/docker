@@ -1,0 +1,68 @@
+Working with Multiple Images:
+
+First of all see all the Docker-installation first then continue this.
+
+--> docker run -itd ubuntu:xenial /bin/bash ( will be run in the background but won't attach to the instance) 
+
+For Example : we get here a ubuntu image of name modest_feynum
+Note : d - disconnect 
+	i - inspect
+	t - attach
+
+Run another image again and download same as the above command.
+
+--> docker run -itd ubuntu:xenial /bin/bash (Now both the instances will be running)
+
+For Example : we get an ubuntu image of Loving_levet. And Both the images are running.
+
+
+we can also inspect the image by name or command by:
+
+--> docker inspect modest_feynum (Gets all the information like Hostname, IP address and Everything)
+
+--> docker attach modest_feynum (will attaching to the container)
+
+modest_feynum # apt-get install ifconfig
+		apt-get update
+		exit
+
+--> docker ps -a (we get all the containers)
+
+--> we can also stop the container by using the command below
+
+For Example: docker stop desperate_hailton
+
+------------------------------------------------------------------------------------------------
+
+If we want to run anything from my local Environment and need a Ruby Environment. For Ruby environment we need to install the image training/sinatra
+
+--> docker search training/sinatra
+--> docker search Ruby
+
+we can also Pull that particular image: 
+
+--> docker pull training/sinatra
+--> docker run -it training/sinatra /bin/bash
+
+After attaching to that instance 
+
+loving_lyt #   gem (i.e can find all the info relates to ruby)
+		gem install json
+		gem list --local (local packages)
+	for example if we go into the root directory by cd /root
+		cd /root
+	/root --> ls -al
+		   echo "Testing" > test.txt
+		   ls -al
+		   test.txt (file exits here)
+
+Lets know create another container by using (docker run -it training/sinatra /bin/bash)
+
+And after attaching to that instance we can see that there we won't find any test.txt file inside the cd /root
+
+
+Note: What we did above is below.
+
+Now that we have a single image installed, we will take it to the next step and install additional images prior to this video. We will now show how to run interactive bash shells on each and explore how the contents of the container (processes and applications) are viewed inside and outside the containers themselves as well as discussing how certain things like load affect the container while allowing the container itself to still remain independent.
+
+

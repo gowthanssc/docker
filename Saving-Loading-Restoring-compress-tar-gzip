@@ -1,0 +1,33 @@
+Saving and Loading Docker images:
+
+
+
+Any image that we no longer to be shown after our work is completed in the docker images, can be done through docker. 
+
+So we can work on that image, take the backup of that image by compressing method like tar,gzip and can be stored backup, and can delate that image also when we need that image again we can simply load or restore that image.
+
+Below are the commands how to do that:
+
+Pulling the image --> docker pull centos:latest
+working on that image --> docker run -it centos:latest /bin/bash 
+				# --> yum update
+	 			  --> exit
+
+We must delate the container which is running then take backup.
+
+Backup the image in the tar file format --> docker save -o centos.latest.tar centos:latest
+
+If we want to look what is there in the tar file after making tar format 
+
+--> tar tvf centos.latest.tar
+
+zgip that tar file to make the disk space more less(compress) --> gzip centos.latest.tar
+
+we can delate the image Now --> docker rmi centos:latest
+
+Now If we want to load (or) restore that image again in the docker images: 
+
+--> docker load --input centos.latest.tar.gz (Image we can see in docker images)
+
+
+

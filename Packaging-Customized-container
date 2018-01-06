@@ -1,0 +1,88 @@
+Packaging a Customized container:
+
+In the below senario lets make some changes:
+
+--> docker run -it ubuntu:xenial /bin/bash
+
+Then here we will attach to the perticular container.
+
+--> cd /root
+test@ /root # echo "This is version 1 of our custom image" > image_var.txt
+		apt-get update
+		apt-get install telnet openssh-server (This packages will install on system & binarys even)
+
+		Add an user for that container instance by using the below command
+	--> adduser test  (i.e give the creadentials associated with it and then user will created)
+	--> check whether the sshd & telnet is installed & configured correctly or not by using the fallowing commands below
+	--> which sshd
+	--> which telnet
+	--> cat /etc/group | grep test
+	--> exit
+
+Now check whether the containers are there by using --> docker ps -a
+
+--> Copy the name of the container and restart the container.
+
+--> docker restart backslabbing_easly
+--> docker attach backslabbing_easly
+--> cd /root
+--> ls -al (we can see the image is created here)
+
+Now if we create a New instance(container) by using below command 
+
+--> docker run -it ubuntu:xenial /bin/bash
+--> cd /root
+--> ls -al (the image can't see here) 
+
+---------------------------------------------------------------------------------------------
+
+How do we slove this ?
+
+--> docker commit -m " Already installed SSH and created test user" -a "tcox" backstabbling_easily tcox /ubusshd:v1 (Here tcox is the Maintainer information i.e you can give our name also)
+--> docker images
+--> docker run -it tcox/ubusshd:v1 /bin/bash 
+--> cd /root
+--> ls -al
+--> which telnet ( can see the telnet installed )
+--> which sshd (can see the sshd installed)
+--> exit
+
+Now we can share the information and installations also and see the telnet & sshd also in any image........
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+On the other way we can write a Docker file by creating a directory:
+
+--> mkdir Build
+--> cd Build
+--> vim Dockerfile
+
+	# This is a custom ubuntu image with sshd already installed 
+	FROM ubuntu:xenial
+	MAINTAINER tcox <tcox@linuxacademy.com>
+	RUN apt-get update
+	RUN apt-get install telnet openssh-server
+
+--> save the DockerFile.
+
+--> docker build -t="tcox/ubusshdonly:v2" . (i.e here . represents Build in this directory)
+
+Here the container build fails by default so in other to rectify that
+Now go back to the aDocker file and edit the below line
+
+	 RUN apt-get install -y telnet openssh-server
+
+--> Run the above command again --> docker build -t="tcox/ubusshdonly:v2" . (Now it creates the image with v2 with permissions)
+
+--> docker images
+--> docker run -it tcox/ubusshdonly:v2 /bin/bash
+--> cd /root
+--> ll
+--> Which telnet & which sshd (Both will be there)
+
+
+
+Note : Now that we have made some changes in one of our container instances, we will show the two methods of commiting our changes and building our own container for use. We will show a method for building a container for our own use and then the larger method for building a container that can more easily be shared or published to The Docker Hub repository.
+	
+

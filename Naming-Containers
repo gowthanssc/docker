@@ -1,0 +1,15 @@
+Naming Our Containers:
+
+If we want to run a container by a specific name:
+
+--> docker run -itd --name naveendasari ubuntu:latest /bin/bash (Here the container will be created by the name "naveendasari)
+
+We can also rename even if the container is running & also not running.
+
+--> docker rename laving_luue naveen505 (laving_luue is the current name, naveen505 is the name we want to change)
+
+we can also rename by ID to name with the same command:
+
+--> docker rename 5754467864 naveen ( 5754467864 is the current container ID, naveen is the name we changed too)
+
+

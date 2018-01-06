@@ -1,0 +1,63 @@
+Docker-Introduction:
+
+--> Isolate Applications
+--> Open source
+--> Automates deployments
+--> Build Easy.
+--> Configuration simplification ( can share the tar file in organization)
+--> Enhance Developer productivity.
+--> Server consolidation and Management (Virtulization with better resources)
+--> Application Isolation
+--> Rapid deployments ( Very quickly deploy large applications)
+--> Build Management (large complex Build Easily)
+
+Virtual Machine:
+
+--> Emulation of specific computer system type.(i.e Runs's other O.s for Hardware A & Run software B on Hardware A)
+--> Windows on Linux
+--> Linux on windows.
+--> Virtualiztion software setup one Operating system to another O.s
+--> Communication from one O.S to Another O.s will be done through Hypervisor.
+
+Container ?
+
+--> Set of packages/liberies for the application to Run. 
+--> The application runs in its own space. 
+
+Important ?
+
+--> Protection, Memory usage, Diskspace.
+--> Built Environments, used to control the traffic with customers.
+--> Also the virulazation can switch the environments.
+--> Containers can share Operating systems.
+
+container Architecture :
+
+--> It is a Client-server Application.
+-->Both daemon & Client can run on the Same system or You can connect Docker client & Daemon to the remote Client.
+--> You can connect Docker Daemon & Client via Sockets.
+
+The main components:
+
+--> Daemon.
+--> Client
+--> Registry.
+
+Y we used this is to save memory, Disk utillization.
+
+Hasn't this already done ?
+
+--> Free BSD -Jails.
+--> Sun (oracle)Solaries -Zones.
+--> Google - lmctfy(Let me contain it for you)
+--> open VZ
+
+All this companies adopt docker.
+
+Docker Hub:
+
+--> Can find n number of images. Can be available free for a single repository. We can also pull images from that DockerHub.
+
+--> Basically after creating an DockerHub account we can get a single private repository for free. we can Explore repositories and see all the images in this. nginx (used for high traffic).
+
+

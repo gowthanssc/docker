@@ -1,0 +1,38 @@
+Inspect commands:
+
+Here we use an Example image of Backstabbing_easly
+
+--> docker exec backstabbing_easly /bin/ps aux | grep bash  (get info about the conatainer like cpu, Memory)
+
+--> docker exec backstabbing_easly /bin/ps
+--> docker top backstabbing_easly ( Executing everything for the CPU,Memory usage  of that particaular image) 
+
+--> docker exec -i -t backstabbling /bin/bash (contects to the container)
+--> top (container is running)
+
+The Below commands shows that the even if the container is running or any update is going on we can check by using the cpu ,memory, I/0 usage for every second for the container by using the below command.
+
+--> docker stats backstabbing_easly 
+
+
+=============================================================================================
+
+Commands: 
+
+--> docker ps -a -q (shows how many containers that we run with only ID)
+--> docker ps -a -q | wc -l (shows hoe many containers are running)
+
+--> docker rm <ID> <Name> (for removing the container which is stoped)
+--> docker rm -f <ID> (Force kill the container even if its running also)
+--> docker ps (shows the running container)
+--> docker ps -a (shows that we ran & all containers)
+--> docker rm `docker ps -a -q` (Removes all the containers)
+
+For Example if we stop the docker and kept and remove the container by using the another terminal, then if we again in the new terminal if we unknowingly login or started that container, we might get problems in order to rectify that we can restart the docker again.
+
+--> we can start and stop the docker in the termial by using below commands:
+
+--> sudo systemctl stop docker
+--> sudo systemctl start docker
+
+

@@ -1,0 +1,97 @@
+Install Docker in Centos 7 & 7.2:
+
+Install docker in VM ware.
+
+--> sudo yum search docker
+--> cd /etc/yum.repos.d/
+user@yum.repos.d --> sudo vim docker.repo
+
+Paste the fallowing in the above docker.repo
+
+[dockerrepo]
+name=Docker Registry
+baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+
+
+--> Save that and update by using (sudo yum update)
+--> clear
+--> sudo yum install docker-engine
+--> sudo systemctl enable docker
+--> sudo systemctl start docker
+--> sudo systemctl status docker
+--> sudo docker images( Here we can't get images by default we have to get permissions)
+--> docker run hello-world
+--> sudo docker images (the hello-world image will be created)
+
+So that --> cd /var/run/
+
+user@run --> sudo usermod test -G docker
+--> Exit and logout 
+
+--> docker images (Now we get all those information of images & Info & can check version)
+
+
+If you want to install Docker in Amazon Ec2-Instance fallow the link below, and don't forget to mention ALLTRAFFIC port range 0.0.0.0/0 for the security groups and check that the image is running or not in the PublicDNS. 
+
+Please find the link : http://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#install_docker
+
+There are some other commands that you must know:
+
+--> df -h (Shows all the Memory information)
+
+Want to know the container struture and information:
+
+--> cd /var/lib/docker
+container --> docker ps (can see all the container)
+--> docker ps -a ( can see the running container)
+
+If we want to see the images
+--> cd image/
+--> cd devicemapper/
+--> cd imagedb/
+--> cd sha256/ (can see the actual image)
+
+--> docker images
+
+Want to pull the image specifically 
+
+--> docker pull ubuntu:xenial
+
+Want to inspect & attach to that instance 
+
+--> docker run -i -t ubuntu:xenial /bin/bash
+--> After attaching to that instance we can see the Memory,CPU, usage and everything use the below command: ps aux
+
+--> exit
+
+If we want to restart the image
+
+--> docker restart nostagic_saha (Its Just an name of the image)
+
+Want to inspect an image:
+
+--> docker inspect ubuntu:xenial (Get information about the image)
+--> docker attach nostalgic_saha (will be attahed to that instance)
+
+
+Note: Might helpfull for the directory structure in Linux to view the conatainers in the VM Ware 
+
+In order to see this we have to be in the Root.
+
+VMWARE : cd /var/lib/docker/image/devicemapper/imagedb/sha256/ (we can see the container IDS)
+EC2Instace : cd /var/lib/docker/image/overlay2/imagedb/content/sha256 (we can see the container Ids) 
+
+Note : 
+--> To switch the users (sudo -i) 
+--> i - inspect
+--> t - attach
+
+
+
+
+
+
+

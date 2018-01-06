@@ -1,0 +1,51 @@
+User and Run Directives should be in the order of Execution you can use the below examples
+
+For Example: 
+
+root @ # --> mkdir Builds
+--> cd Builds
+--> Vim Dockerfile
+
+	# Docker file based onthe latest centos7 image-non-privilized user entry
+	FROM centos:latest
+	MAINTAINER naveendasari571@gmail.com
+	RUN useradd -ms /bin/bash
+	USER user
+
+--> docker build -t centos7/nonroot:v1 . 
+--> docker run -it centos7/nonroot:v1 /bin/bash  ( this will attach to the container which is build for the Docker file)
+
+--> docker exec -u 0 -it sleep_allen /bin/bash (It will attach to that particular container with the root user but not the user we created in the Docker file)
+
+
+For Example if we want to add any RUN for the above Docker file
+
+EXample : In order to run it should not be in the below order
+
+# Dockerfile based on the latest centos7 image - non -privileged user entry
+FROM centos:latest
+MAINTAINER naveendasari571@gmail.com
+
+RUN useradd -ms /bin/bash user
+
+USER user
+
+RUN echo "EXPORT 192.168.0.0/24" >> /etc/exports.list
+
+
+For the Above the build fails because the order of execution is not correct after RUN we has to get USER.( Entrypoint)
+
+It has to be like below :
+
+# Dockerfile based on the latest centos7 image - non -privileged user entry
+FROM centos:latest
+MAINTAINER naveendasari571@gmail.com
+
+RUN useradd -ms /bin/bash user
+RUN echo "EXPORT 192.168.0.0/24" >> /etc/exports.list
+
+USER user
+
+
+
+

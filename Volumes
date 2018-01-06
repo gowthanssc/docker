@@ -1,0 +1,8 @@
+Volumes:
+
+--> We can share the directory and files with in the volumes and the Host, even if we create a new file in the Host Directory, we get the same change in the volumes in the container itself.
+
+we can make the changes and create the files in the Host directory For Example: appl.bin,config.local, message.txt each and every change will be replicated to the Container itself.
+
+
+

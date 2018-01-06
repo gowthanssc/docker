@@ -1,0 +1,22 @@
+Docker Push:
+
+In order to push the code to Docker Hub, we have to create a public or pravite repository in the docker Account.
+
+Also in the terminal we has login to the docker by below command:
+
+--> docker login
+--> docker logout
+
+In order to tag our image and push that image into the docker HUb in the respository we created:
+
+First tag the image with the Created repository that we want the image there:
+
+--> docker tag <image name:version> <repository name that we created in the Docker hub account>
+For Example: docker tag mine/centos:v1 naveendasari/mycentos
+
+--> docker login --username= <user name of the Docker hub account> --email= <email of Docker hub account>
+--> give the password that is prompted.
+
+--> docker push <Repository name>
+For Example: docker push naveendasari/mycentos
+

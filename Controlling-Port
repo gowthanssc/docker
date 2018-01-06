@@ -1,0 +1,35 @@
+Controlling Port Exposure on containers:
+
+Commands:
+
+--> docker run -itd nginx:latest
+--> docker ps ( we can see that Port 80, 443 are Exposed But If we check with Elinks It won't work)
+
+In order to slove that It have to be Exposed one has to be mapped.
+
+--> docker run -itd -p 80 nginx:latest (In docker ps we can see the Port is mapped with 32728) 
+
+--> elinks http://localhost:32728 (we can see the nginx web page)
+
+An another Example: 
+
+--> docker run -itd -p 8080:80 nginx:latest
+--> docker ps (we can see that tcp 80 will be Mapped with 8080)
+--> elinks http://local host:8080
+
+In the above cases only one port is mapping, In order to get all the ports exposed in the docker file from nginx latest. 
+
+--> docker run -itd -P nginx:latest (In docker ps, here all the ports will be Mapped with other)
+
+can check by using elinks as the same above procedure.
+
+An Another Example:
+If we want a particular address to be mapped we can do it by 
+
+--> docker run -itd -p 127.0.0.1:8081:80 nginx:latest (In docker ps, we can check how its mapped)
+
+--> elinks http://127.0.0.1:8081 (we can see the nginx page) 
+
+Note: 127.0.0.1 is the IP Address of the Host, you can find it by ifconfig.
+
+

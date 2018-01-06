@@ -1,0 +1,88 @@
+Running Container commands with Docker:
+
+--> docker run -it ubuntu:xenial /bin/bash 
+--> docker ps ( For Ex: we get image elastic_yamia )
+--> # ps (get the information of the container)
+      top (Lists all the load of the system)
+
+--> cd /root
+--> ls -al
+--> which sshd & which telnet (Noting will be there)
+
+want to see the logs of that images we can find it by
+
+--> docker logs elastic_yamia (shows what hpn still Now)
+
+For Example:  I don't to attach the container but should running in the background, what is the command
+
+--> docker exec elastic_yamia /bin/cat /etc/profile
+--> docker attach elastic_yamia 
+
+In the container # -->If we change anything like in the --> vim /etc/profile
+
+# --> apt-get install vim
+--> apt-get update
+--> :wq
+--> exit
+
+--> docker ps -a
+
+--> Restart the container --> docker restart elastic_yamia
+--> docker exec elastic_yamia /bin/cat /etc/profile
+--> we can see the change that we made for the /etc/profile
+
+--> docker stop elastic_yamia
+
+---------------------------------------------------------------------------------
+
+Other example:
+
+If we want to exectue the command in deamon:
+
+-->docker run -d ubuntu:xenial /bin/bash -c "while true;do echo HELLO;sleep 1; done"
+--> docker ps
+--> docker logs silly_kilby
+
+If we want to see that how many times its running we can look by using the command
+
+--> docker ps
+--> docker logs silly_kilby | WC -l
+--> docker stop silly_kilby
+
+
+----------------------------------------------------------------------------------
+
+Exposing our container with port Redirects:
+
+--> docker pull nginx:latest
+
+connect to nginx, in the background
+
+--> docker run -d nginx:latest
+--> docker inspect peaceful:Almartie
+--> elinks
+--> sudo yum install elinks
+
+After installing elinks with the IP address given in the Inspect image we can see the 
+
+--> elinks http://172.17.0.2 (we can look the IP Address in the inspect image) Here we can see the Nginx webpage
+--> elinks http://loaclhost (It won't work)
+
+How to get the nginx webpage to losthost by using the below commands first stop the container and run the command:
+
+--> docker stop peaceful:Almertia
+--> docker run -d -P 80:80 nginx:latest
+--> docker ps (can see container running)
+--> elinks http://172.17.0.2 (we can see the webpage)
+--> elinks http://localhost 
+
+The other example is 
+
+--> docker run -d -P 8080:80 nginx:latest
+--> docker ps
+--> docker logs determined_nother
+--> elinks http://172.17.0.2 (we can see the web page)
+--> elinks http://localhost (we can't see the nginx page)
+--> elinks http://localhost:8080 (Now we can see the page in the nginx)
+
+

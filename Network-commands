@@ -1,0 +1,40 @@
+Network commands:
+
+--> docker network --help
+--> docker network inspect ls (shows the list of all the networks in docker)
+--> docker network inspect bridge( Here bridge is the name of the Network and also it describes theverything about the bridge network)
+
+
+Create a Network:
+
+--> docker network create --subnet 10.1.0.0/24 --gateway 10.1.0.1 mybridge01 
+i.e the commands craete the network with the given subnet, gateway range and with the name mybridge01
+
+Delate a Network (Remove):
+
+--> docker network rm mybridge01 (simply by giving name)
+================================================================================================
+
+How to Assign and run a container with in a Network with IP-ranges:
+
+--> Create Network first and then assign by using this crate a container then will vary Iprange.
+
+--> docker network create --subnet 10.1.0.0/16 --gateway 10.1.0.1 --ip-range=10.1.4.0/24 --driver=bridge --label=host4network bridge04
+
+--> docker network inspect bridge04 
+
+Then create a container with the same network(bridge04) out of it by using below command, 
+
+--> docker run -it --name nettest1 --net bridge04 centos:latest /bin/bash
+--> yum update 
+--> yum install -y net-tools (to view the "ifconfig" command at  what address the IP-range is)
+
+For another Example: 
+
+If we want a container to be created with the different IP-range and with the same Network, then use the below command 
+
+--> docker run -it --name nettest2 --net bridge04 --ip 10.1.4.100 centos:latest /bin/bash
+--> yun update
+--> yum install -y net-tools (Here the IP address will be varied and updated with for in the command only)
+-->ifconfig
+--> ping 10.1.4.100 (Ping to this only)

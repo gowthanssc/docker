@@ -1,0 +1,39 @@
+ENTRY-POINT:
+
+Entry point consists of the CMD, it takes an arguments, default application, or something else.
+
+The main difference between Entry point and CMD is while running the dockerfile:
+
+For Example:
+
+For CMD: If we return in the docker file for echo " This is dasari page"
+--> docker run centos7/echo:v1 /bin/echo "This is naveen page"
+
+o/p : This is naveen page
+
+i.e what ever we return in the docker file if we mention CMD echo message, and while running can change to the message we return.
+
+For ENTRYPOINT: If we return in the docker file for echo " This is dasari page"
+--> docker build -t centos7/entry:v1
+--> docker run centos7/entry:v1 /bin/echo "This is naveen page"
+
+o/p : This is dasari page
+
+i.e what ever we return in the docker file will display even if we mention any thing also after echo.
+
+For Example:
+
+# Dockerfile based on the latest centos7 image - non -privileged user entry
+FROM centos:latest
+MAINTAINER naveendasari571@gmail.com
+
+RUN useradd -ms /bin/bash user
+
+ENTRYPOINT echo "This command will display this message on EVERY container that is run from it"
+
+USER user
+
+
+-->docker build -t centos7/entry:v1 .
+--> docker run centos7/entry:v1
+

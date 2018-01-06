@@ -1,0 +1,25 @@
+Image History:
+
+we can check the image history by below command:
+
+--> docker history nginx
+--> docker history --no-trunc nginx (we can get whole bunch of Information of the image)
+
+--> docker history --quiet nginx (An another Example)
+--> docker history --quiet --no-trunc nginx (we get an History in another way)
+
+============================================================================
+
+Taking control of the Tags:
+
+
+--> docker tag <imageId> <To tag image name with version> 
+
+For Example : docker tag 6c5d4r924 mine/centos:v1.0
+
+--> docker tag <Imagename> <Another name>
+Another Example: docker tah mine/centos:v1.0 tcox2.mylabserver.com/centos:v1.0b
+
+=============================================================================
+
+

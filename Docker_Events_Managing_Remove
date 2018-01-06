@@ -1,0 +1,22 @@
+Docker-Events:
+
+For Monitoring we use Docker events, even if the container is running, or we can get the state of the everything that is happing in the docker. Like docker is attached, containers, images, type, volumes, network, deamon. We can also filter the events.
+
+--> docker events
+--> docker events --filter event=<containername>
+
+Example this fileter is available in all cases like Type, container, volumes, network, deamon.
+
+Note: we can Monitor the internal things in the docker.
+
+=========================================================================
+
+Managing & Removing Base Images:
+
+--> docker rmi <imageid>
+--> docker rmi -f <imageId>
+
+
+Note: If we have the Number of containers based on the base image, If we tried to remove that image, the image won't be delated but If we want to still delate it, we can delate it my remove forcely. However, if we delate forcly the Image will be delated but the container based on the image will not be delated. we can start, attach and work on that containers also.
+
+
